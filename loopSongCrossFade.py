@@ -32,9 +32,10 @@ for _ in range(loop_count - 1):
 # Trim the loop to exactly 1 hour
 one_hour_track = full_loop[:one_hour]
 
-# Create a unique file name with a timestamp
-current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-file_name = f"one_hour_loop_{current_time}.mp3"
+# Extract the base name of the original song and create a unique file name
+original_song_name = os.path.splitext(os.path.basename(song_path))[0] # Song Name without extension
+current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S") # Current time in YYYY-MM-DD_HH-MM-SS format
+file_name = f"{original_song_name}_1hr_version_{current_time}.mp3"  # Final file name
 export_dir = "exports"
 if not os.path.exists(export_dir):
     os.makedirs(export_dir)
@@ -44,3 +45,4 @@ export_path = os.path.join(export_dir, file_name)
 one_hour_track.export(export_path, format="mp3")
 
 print(f"1-hour track created and saved to: {export_path}")
+
