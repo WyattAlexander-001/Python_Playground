@@ -1,6 +1,8 @@
 # pip3 install pydub
 # brew install ffmpeg
-# python loopSongCrossFade.py
+# have an audio folder and a exports folder
+# Run: python loopSongCrossFade.py
+
 import datetime
 import os
 os.environ["PATH"] += os.pathsep + "/opt/homebrew/bin" # add ffmpeg to path
@@ -10,7 +12,12 @@ print(sys.executable)
 from pydub import AudioSegment
 
 # Load the song
-song_path = "audio/summer.mp3" 
+
+# Get the song name from user input, like use summer
+input_song = input("Enter song name: ")
+
+# Construct the file path dynamically
+song_path = f"audio/{input_song}.mp3"
 song = AudioSegment.from_file(song_path)
 
 # Crossfade duration
